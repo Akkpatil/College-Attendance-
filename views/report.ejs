@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance Report</title>
+</head>
+<body><center>
+    <h1>Attendance Report</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Month</th>
+                <th>Present Days</th>
+                <th>Absent Days</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Ensure reportData exists and has data -->
+            <% if (typeof reportData !== 'undefined' && reportData.length > 0) { %>
+                <% reportData.forEach(function(record) { %>
+                    <tr>
+                        <td><%= record.name %></td>
+                        <td><%= record.month %></td>
+                        <td><%= record.present %></td>
+                        <td><%= record.absent %></td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="4">No data available</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table></center>
+</body>
+</html>

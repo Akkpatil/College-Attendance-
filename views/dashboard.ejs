@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <!-- Link to Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ10xTgJ8aYjL5a3vJ6s+qP5L3K9aV5Uz6jL5mJfxFJ9fsa2NV6D9fr4+6pD" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/styles.css"> <!-- Optional custom styles -->
+
+  <style>
+    /* Custom button styles */
+    .button {
+      position: relative;
+      padding: 10px 22px;
+      border-radius: 6px;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      background-color: #7d2ae8;
+      transition: all 0.2s ease;
+      width: 100%;
+      margin-left: 10px;
+    }
+
+    .button:active {
+      transform: scale(0.96);
+    }
+
+    .button:before,
+    .button:after {
+      position: absolute;
+      content: "";
+      width: 150%;
+      left: 50%;
+      height: 100%;
+      transform: translateX(-50%);
+      z-index: -1000;
+      background-repeat: no-repeat;
+    }
+
+    .button:hover:before {
+      top: -70%;
+      background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+        radial-gradient(circle, transparent 20%, #7d2ae8 20%, transparent 30%),
+        radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+        radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+        radial-gradient(circle, transparent 10%, #7d2ae8 15%, transparent 20%),
+        radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+        radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+        radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+        radial-gradient(circle, #7d2ae8 20%, transparent 20%);
+      background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%,
+        10% 10%, 18% 18%;
+      background-position: 50% 120%;
+      animation: greentopBubbles 0.6s ease;
+    }
+
+    @keyframes greentopBubbles {
+      0% {
+        background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%,
+          40% 90%, 55% 90%, 70% 90%;
+      }
+
+      50% {
+        background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%,
+          50% 50%, 65% 20%, 90% 30%;
+      }
+
+      100% {
+        background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%,
+          50% 40%, 65% 10%, 90% 20%;
+        background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+      }
+    }
+
+    .button:hover::after {
+      bottom: -70%;
+      background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+        radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+        radial-gradient(circle, transparent 10%, #7d2ae8 15%, transparent 20%),
+        radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+        radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+        radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+        radial-gradient(circle, #7d2ae8 20%, transparent 20%);
+      background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%;
+      background-position: 50% 0%;
+      animation: greenbottomBubbles 0.6s ease;
+    }
+
+    @keyframes greenbottomBubbles {
+      0% {
+        background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%,
+          70% -10%, 70% 0%;
+      }
+
+      50% {
+        background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%,
+          105% 0%;
+      }
+
+      100% {
+        background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%,
+          110% 10%;
+        background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+      }
+    }
+
+    /* Custom styling for links */
+    .link-button {
+      text-decoration: none;
+      display: block;
+      background-color: #7d2ae8;
+      color: white;
+      padding: 12px;
+      text-align: center;
+      border-radius: 6px;
+      margin: 10px 0;
+      transition: background-color 0.2s ease;
+    }
+
+    .link-button:hover {
+      background-color: #5e17a1;
+    }
+
+    .link-button:active {
+      transform: scale(0.98);
+    }
+
+    /* Additional styling */
+    h1 {
+      color: #5C6BC0;
+      margin-bottom: 30px;
+    }
+
+    .container {
+      max-width: 500px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      background-color: white;
+    }
+  </style>
+</head><center>
+<body class="bg-light" style="height: 100vh; margin: 0;" bgcolor="#F2EBE3">
+
+  <!-- Full screen container to center content vertically and horizontally -->
+  <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <!-- Dashboard Content -->
+    <div>
+      <h1 class="text-center">Welcome, Professor!</h1>
+
+      <!-- Link to Div A -->
+      <a href="/attendance/A" class="link-button">Div A</a>
+
+      <!-- Link to Div B -->
+      <a href="/attendance/B" class="link-button">Div B</a>
+
+      <!-- Logout link -->
+      <a href="/logout" class="link-button">Logout</a>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybM6Tb4k9eMItKY4QfD5dPpS5ZG7xN6Z2xlhz9lGqLs99aFh5F" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8Fqg3o8vE56kFk9ovXY0F7ZbfzV5dxMkD6eG9kHtB0Jz/2" crossorigin="anonymous"></script>
+</center>
+</body>
+</html>

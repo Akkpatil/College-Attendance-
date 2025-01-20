@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance - Div <%= division %></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ10xTgJ8aYjL5a3vJ6s+qP5L3K9aV5Uz6jL5mJfxFJ9fsa2NV6D9fr4+6pD" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <style>
+    .button {
+      position: relative;
+      padding: 10px 22px;
+      border-radius: 6px;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      background-color: #7d2ae8;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    .button:active {
+      transform: scale(0.96);
+    }
+
+    .button:before,
+    .button:after {
+      position: absolute;
+      content: "";
+      width: 150%;
+      left: 50%;
+      height: 100%;
+      transform: translateX(-50%);
+      z-index: -1000;
+      background-repeat: no-repeat;
+    }
+
+    /* Adjust form input styling */
+    .input-field {
+      border: none;
+      outline: none;
+      border-radius: 15px;
+      padding: 1em;
+      background-color: #ccc;
+      box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+      width: 100%;
+      margin-bottom: 10px;
+      transition: 300ms ease-in-out;
+    }
+
+    .input-field:focus {
+      background-color: white;
+      transform: scale(1.05);
+      box-shadow: 13px 13px 100px #969696, -13px -13px 100px #ffffff;
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      background-color: white;
+      margin: 0 auto;
+    }
+
+    /* Ensure correct item spacing and alignment */
+    .list-group-item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .list-group-item form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .list-group-item input,
+    .list-group-item select,
+    .list-group-item button {
+      width: 100%;
+    }
+
+    .action-button {
+      margin-top: 10px;
+    }
+
+    h1 {
+      color: #5C6BC0;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body class="bg-light" style="height: 100vh; margin: 0;" bgcolor="#F2EBE3">
+
+  <div class="container d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
+    <!-- Page title -->
+    <h1 class="text-center">Attendance - Div <%= division %></h1>
+
+    <!-- Add Student Form -->
+    <form method="POST" action="/students/add" class="w-100">
+      <input type="text" name="name" placeholder="Student Name" class="input-field" required />
+      <input type="hidden" name="division" value="<%= division %>" />
+      <button type="submit" class="button action-button w-100">Add Student</button>
+    </form>
+
+    <!-- Student List -->
+    <ul class="list-group mt-4 w-100">
+      <% students.forEach(student => { %>
+        <li class="list-group-item">
+          <%= student.name %>
+
+          <!-- Remove Student Form -->
+          <form method="POST" action="/students/remove" style="display:inline;">
+            <input type="hidden" name="id" value="<%= student.id %>" />
+            <input type="hidden" name="division" value="<%= division %>" />
+            <button type="submit" class="button btn-danger action-button">Remove</button>
+          </form>
+
+          <!-- Mark Attendance Form -->
+          <form method="POST" action="/attendance/mark">
+            <input type="hidden" name="student_id" value="<%= student.id %>" />
+            <input type="hidden" name="division" value="<%= division %>" />
+            <input type="date" name="date" required class="input-field" />
+            <select name="status" class="input-field">
+              <option value="Present">Present</option>
+              <option value="Absent">Absent</option>
+            </select>
+            <button type="submit" class="button action-button">Mark Attendance</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+
+    <!-- Link to Report -->
+    <a href="/report/<%= division %>" class="button action-button mt-4">View Report</a>
+  </div>
+
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybM6Tb4k9eMItKY4QfD5dPpS5ZG7xN6Z2xlhz9lGqLs99aFh5F" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8Fqg3o8vE56kFk9ovXY0F7ZbfzV5dxMkD6eG9kHtB0Jz/2" crossorigin="anonymous"></script>
+
+</body>
+</html>
